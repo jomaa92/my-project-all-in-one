@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calcultor</title>
+    <link rel="stylesheet" href="../calculartor/calculartor/style.css">
+</head>
+<script>
+
+
+    // ========================= alt Code=============================
+
+    // let container = document.getElementById('displays');
+    // let decimalAdded = false; // متغير لتعقب ما إذا تمت إضافة الفاصلة العشرية بالفعل
+
+    // function hisab(yousaoi) {
+    //     let container = document.getElementById('displays');
+    //     // تحقق مما إذا كان الفاصلة العشرية مضافة بالفعل
+    //     if (yousaoi === '.' && decimalAdded) {
+    //         return;
+    //     }
+
+    //     // إذا لم تكن الفاصلة العشرية مضافة بالفعل، قم بإضافتها
+    //     if (yousaoi === '.') {
+    //         decimalAdded = true;
+    //     }
+
+    //     container.innerHTML += yousaoi;
+    // }
+
+    // function Aknatij() {
+
+    //     let container = document.getElementById('displays');
+    //     let result = eval(container.innerHTML);
+    //     container.innerHTML = result;
+
+    // }
+    // function hazif() {
+    //     let container = document.getElementById('displays');
+    //     container.innerHTML = container.innerHTML.slice(0, - 1);
+    // }
+
+
+
+    // ========================= new Code=============================
+
+    let container = document.getElementById('displays');
+    let decimalAdded = false; // متغير لتعقب ما إذا تمت إضافة الفاصلة العشرية بالفعل
+
+    function hisab(yousaoi) {
+        let container = document.getElementById('displays');
+        let currentText = container.innerHTML;
+        // تحقق مما إذا كان الفاصلة العشرية مضافة بالفعل
+        if (yousaoi === '.' && decimalAdded) {
+            return;
+        }
+
+        // إذا لم تكن الفاصلة العشرية مضافة بالفعل، قم بإضافتها
+        if (yousaoi === '.') {
+            decimalAdded = true;
+        }
+
+        container.innerHTML += yousaoi;
+    }
+
+    function Aknatij() {
+        let container = document.getElementById('displays');
+        let currentText = container.innerHTML;
+
+        // التحقق من أن هناك نص لحسابه
+        if (!currentText) return;
+
+        // إزالة الفواصل العشرية إذا كانت توجد في نهاية النص
+        if (currentText.endsWith('.')) {
+            currentText = currentText.slice(0, -1);
+        }
+
+        // التحقق مرة أخرى من وجود الفاصلة العشرية وإذا لم تكن مضافة بالفعل، يتم حذفها من النص
+        if (/[\+\-\*\/]/.test(currentText) && !decimalAdded) {
+            currentText = currentText.replace(/\./g, ''); // حذف الفواصل العشرية إذا لم تكن مضافة بالفعل
+            decimalAdded = true;
+        }
+
+        // حساب النتيجة
+        let result = eval(currentText);
+        container.innerHTML = result.toString();
+
+        // تمكين إضافة الفاصلة العشرية مرة أخرى بعد الحساب
+        decimalAdded = false;
+    }
+
+
+
+    function hazif() {
+        let container = document.getElementById('displays');
+        let currentText = container.innerHTML;
+
+        if (currentText.charAt(currentText.length - 1) === '.') {
+            decimalAdded = false; // إذا تم حذف الفاصلة العشرية، يتم تمكين إضافتها مرة أخرى
+        }
+
+        container.innerHTML = currentText.slice(0, -1);
+    }
+
+
+
+</script>
+
+<body>
+    <div class="jm">
+        <h2>
+            Jomaa24.com
+        </h2>
+    </div>
+
+    <div id="displays" maxlength="10">
+    </div>
+
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td onclick="hazif()">Del.</td>
+        </tr>
+        <tr>
+            <td onclick="hisab(7)">7</td>
+            <td onclick="hisab(8)">8</td>
+            <td onclick="hisab(9)">9</td>
+            <td class="cr" onclick="hisab('*')">×</td>
+
+        </tr>
+        <tr>
+            <td onclick="hisab(6)">6</td>
+            <td onclick="hisab(5)">5</td>
+            <td onclick="hisab(6)">6</td>
+            <td class="cr" onclick="hisab('/')">÷</td>
+        </tr>
+        <tr>
+            <td onclick="hisab(3)">3</td>
+            <td onclick="hisab(2)">2</td>
+            <td onclick="hisab(1)">1</td>
+            <td class="cr" onclick="hisab('-')">-</td>
+        </tr>
+        <tr>
+            <td onclick="hisab(0)">0</td>
+            <td onclick="hisab('.')">.</td>
+            <td id="eco" onclick=" Aknatij ('=')">=</td>
+            <td class="cr" onclick="hisab('+')">+</td>
+        </tr>
+    </table>
+</body>
+
+</html>
