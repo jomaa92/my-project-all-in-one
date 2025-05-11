@@ -1,0 +1,131 @@
+body {
+    margin: 30px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+   
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    margin:10px;
+    display: flex;
+    justify-content: flex-start; /* توزيع العناصر على الجانبين */
+    align-items: flex-start;
+    gap: 60px;
+    width: 80%;
+    max-width: 1000px;
+}
+
+.right-section {
+    width: 48%; /* ضبط عرض القسم الأيمن */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.left-section {
+    width: 48%; /* ضبط عرض القسم الأيسر */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+}
+
+#post {
+    display: flex;
+    flex-direction: column; /* ترتيب الـ posts بشكل عمودي */
+    gap: 15px; /* إضافة تباعد بين المنشورات */
+    width: 100%;
+}
+
+.post-item {
+    display: flex;
+    justify-content: space-between; /* وضع الأيقونات على الطرف الأيمن */
+    align-items: center; /* ضبط المحاذاة داخل كل منشور */
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.icons {
+    display: flex;
+    flex-direction: row; /* جعل الأيقونات في خط أفقي */
+    gap: 10px; /* تحديد المسافة بين الأيقونات */
+}
+.right{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+
+
+i:hover {
+    cursor: pointer;
+    color: #007bff;
+}
+
+#empty {
+    margin: 0;
+    border: none;
+    color: firebrick;
+    font-size: 14px;
+}
+
+
+
+
+
+
+.icons i {
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
+}
+
+.icons i:hover {
+    color: red;
+}
+
+h3 {
+    gap: 10px;
+    margin: 4px;
+    color: #444;
+}
+div{
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+p {
+    margin: 5px;
+    width: 80%;
+    max-width: 150px; /* الحد الأقصى لعرض الفقرة */
+    font-size: 16px;
+    color: #333;
+    word-wrap: break-word; /* السماح للكلمات بالانكسار عند الحاجة */
+    overflow-wrap: break-word; /* تأكيد دعم تقسيم النص */
+    white-space: normal; /* السماح بتنسيق النص بشكل طبيعي */
+}
+.selected {
+    color: red; /* تحويل النص إلى اللون الأحمر */
+    text-decoration: line-through; /* وضع خط في المنتصف */
+}
+p:hover{
+    cursor: pointer;
+}
+.it-select-E{
+    background-color: #cafacc;
+}

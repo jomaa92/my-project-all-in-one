@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>مشاريعي</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container my-5">
+  <h1 class="text-center mb-4">📂 مشاريعي</h1>
+
+  <!-- نموذج الإضافة -->
+  <div class="card mb-4">
+    <div class="card-header bg-primary text-white">➕ أضف مشروعًا</div>
+    <div class="card-body">
+      <form id="projectForm">
+        <div class="mb-3">
+          <label class="form-label">اسم المشروع</label>
+          <input type="text" class="form-control" id="projectTitle" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">وصف المشروع</label>
+          <textarea class="form-control" id="projectDesc" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">رابط المشروع</label>
+          <input type="url" class="form-control" id="projectLink" required>
+        </div>
+        <button type="submit" class="btn btn-success">إضافة</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- قائمة المشاريع -->
+  <div id="projectsList" class="row g-3"></div>
+</div>
+
+<script>
+  const form = document.getElementById("projectForm");
+  const projectsList = document.getElementById("projectsList");
+  let projects = JSON.parse(localStorage.getItem("projects")) || [];
+
+  function saveProjects() {
+    localStorage.setItem("projects", JSON.stringify(projects));
+  }
+
+  function renderProjects() {
+    projectsList.innerHTML = "";
+    projects.forEach((project, index) => {
+      const card = document.createElement("div");
+      card.className = "col-md-6 col-lg-4";
+      card.innerHTML = `
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">${project.title}</h5>
+            <p class="card-text">${project.desc}</p>
+            <a href="viewer.html?url=${encodeURIComponent(project.link)}" class="btn btn-outline-primary" target="_blank">👁️ عرض المشروع</a>
+            <button class="btn btn-sm btn-danger float-end" onclick="deleteProject(${index})">🗑 حذف</button>
+          </div>
+        </div>
+      `;
+      projectsList.appendChild(card);
+    });
+  }
+
+  function deleteProject(index) {
+    if (confirm("هل تريد حذف هذا المشروع؟")) {
+      projects.splice(index, 1);
+      saveProjects();
+      renderProjects();
+    }
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const newProject = {
+      title: document.getElementById("projectTitle").value,
+      desc: document.getElementById("projectDesc").value,
+      link: document.getElementById("projectLink").value
+    };
+    projects.push(newProject);
+    saveProjects();
+    renderProjects();
+    form.reset();
+  });
+
+  renderProjects();
+</script>
+
+</body>
+</html>
