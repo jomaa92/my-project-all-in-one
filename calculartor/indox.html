@@ -1,156 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>calcultor</title>
-    <link rel="stylesheet" href="../calculartor/calculartor/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f0f2f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .calculator-wrapper {
+      width: 90%;
+      max-width: 360px;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .branding {
+      text-align: center;
+      background: #4e54c8;
+      color: white;
+      padding: 15px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    #display {
+      height: 60px;
+      padding: 15px;
+      font-size: 1.5rem;
+      background: #e9ecef;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      overflow-x: auto;
+      border-bottom: 1px solid #ccc;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td {
+      width: 25%;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.2rem;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    td:hover {
+      background: #f1f1f1;
+    }
+
+    .operator {
+      background: #f8f9fa;
+      color: #333;
+      font-weight: bold;
+    }
+
+    #equal {
+      background: #4e54c8;
+      color: white;
+      font-weight: bold;
+    }
+
+    @media (max-width: 480px) {
+      td {
+        padding: 18px;
+        font-size: 1.1rem;
+      }
+    }
+  </style>
 </head>
+<body>
+
+<div class="calculator-wrapper">
+  <div class="branding">Jomaa24.com</div>
+  <div id="display"></div>
+
+  <table>
+    <tr>
+      <td colspan="3"></td>
+      <td onclick="deleteLast()">DEL</td>
+    </tr>
+    <tr>
+      <td onclick="appendNumber(7)">7</td>
+      <td onclick="appendNumber(8)">8</td>
+      <td onclick="appendNumber(9)">9</td>
+      <td class="operator" onclick="appendOperator('*')">×</td>
+    </tr>
+    <tr>
+      <td onclick="appendNumber(4)">4</td>
+      <td onclick="appendNumber(5)">5</td>
+      <td onclick="appendNumber(6)">6</td>
+      <td class="operator" onclick="appendOperator('/')">÷</td>
+    </tr>
+    <tr>
+      <td onclick="appendNumber(1)">1</td>
+      <td onclick="appendNumber(2)">2</td>
+      <td onclick="appendNumber(3)">3</td>
+      <td class="operator" onclick="appendOperator('-')">−</td>
+    </tr>
+    <tr>
+      <td onclick="appendNumber(0)">0</td>
+      <td onclick="appendDot()">.</td>
+      <td id="equal" onclick="calculateResult()">=</td>
+      <td class="operator" onclick="appendOperator('+')">+</td>
+    </tr>
+  </table>
+</div>
+
 <script>
+  let display = document.getElementById('display');
+  let decimalAdded = false;
 
+  function appendNumber(num) {
+    display.innerHTML += num;
+  }
 
-    // ========================= alt Code=============================
+  function appendOperator(op) {
+    const lastChar = display.innerHTML.slice(-1);
+    if ('+-*/'.includes(lastChar)) return;
+    display.innerHTML += op;
+    decimalAdded = false;
+  }
 
-    // let container = document.getElementById('displays');
-    // let decimalAdded = false; // متغير لتعقب ما إذا تمت إضافة الفاصلة العشرية بالفعل
-
-    // function hisab(yousaoi) {
-    //     let container = document.getElementById('displays');
-    //     // تحقق مما إذا كان الفاصلة العشرية مضافة بالفعل
-    //     if (yousaoi === '.' && decimalAdded) {
-    //         return;
-    //     }
-
-    //     // إذا لم تكن الفاصلة العشرية مضافة بالفعل، قم بإضافتها
-    //     if (yousaoi === '.') {
-    //         decimalAdded = true;
-    //     }
-
-    //     container.innerHTML += yousaoi;
-    // }
-
-    // function Aknatij() {
-
-    //     let container = document.getElementById('displays');
-    //     let result = eval(container.innerHTML);
-    //     container.innerHTML = result;
-
-    // }
-    // function hazif() {
-    //     let container = document.getElementById('displays');
-    //     container.innerHTML = container.innerHTML.slice(0, - 1);
-    // }
-
-
-
-    // ========================= new Code=============================
-
-    let container = document.getElementById('displays');
-    let decimalAdded = false; // متغير لتعقب ما إذا تمت إضافة الفاصلة العشرية بالفعل
-
-    function hisab(yousaoi) {
-        let container = document.getElementById('displays');
-        let currentText = container.innerHTML;
-        // تحقق مما إذا كان الفاصلة العشرية مضافة بالفعل
-        if (yousaoi === '.' && decimalAdded) {
-            return;
-        }
-
-        // إذا لم تكن الفاصلة العشرية مضافة بالفعل، قم بإضافتها
-        if (yousaoi === '.') {
-            decimalAdded = true;
-        }
-
-        container.innerHTML += yousaoi;
+  function appendDot() {
+    if (!decimalAdded) {
+      display.innerHTML += '.';
+      decimalAdded = true;
     }
+  }
 
-    function Aknatij() {
-        let container = document.getElementById('displays');
-        let currentText = container.innerHTML;
-
-        // التحقق من أن هناك نص لحسابه
-        if (!currentText) return;
-
-        // إزالة الفواصل العشرية إذا كانت توجد في نهاية النص
-        if (currentText.endsWith('.')) {
-            currentText = currentText.slice(0, -1);
-        }
-
-        // التحقق مرة أخرى من وجود الفاصلة العشرية وإذا لم تكن مضافة بالفعل، يتم حذفها من النص
-        if (/[\+\-\*\/]/.test(currentText) && !decimalAdded) {
-            currentText = currentText.replace(/\./g, ''); // حذف الفواصل العشرية إذا لم تكن مضافة بالفعل
-            decimalAdded = true;
-        }
-
-        // حساب النتيجة
-        let result = eval(currentText);
-        container.innerHTML = result.toString();
-
-        // تمكين إضافة الفاصلة العشرية مرة أخرى بعد الحساب
-        decimalAdded = false;
+  function calculateResult() {
+    let expression = display.innerHTML;
+    if (expression.endsWith('.')) {
+      expression = expression.slice(0, -1);
     }
-
-
-
-    function hazif() {
-        let container = document.getElementById('displays');
-        let currentText = container.innerHTML;
-
-        if (currentText.charAt(currentText.length - 1) === '.') {
-            decimalAdded = false; // إذا تم حذف الفاصلة العشرية، يتم تمكين إضافتها مرة أخرى
-        }
-
-        container.innerHTML = currentText.slice(0, -1);
+    try {
+      let result = eval(expression);
+      display.innerHTML = result;
+      decimalAdded = false;
+    } catch {
+      display.innerHTML = "Error";
     }
+  }
 
-
-
+  function deleteLast() {
+    const lastChar = display.innerHTML.slice(-1);
+    if (lastChar === '.') {
+      decimalAdded = false;
+    }
+    display.innerHTML = display.innerHTML.slice(0, -1);
+  }
 </script>
 
-<body>
-    <div class="jm">
-        <h2>
-            Jomaa24.com
-        </h2>
-    </div>
-
-    <div id="displays" maxlength="10">
-    </div>
-
-    <table>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td onclick="hazif()">Del.</td>
-        </tr>
-        <tr>
-            <td onclick="hisab(7)">7</td>
-            <td onclick="hisab(8)">8</td>
-            <td onclick="hisab(9)">9</td>
-            <td class="cr" onclick="hisab('*')">×</td>
-
-        </tr>
-        <tr>
-            <td onclick="hisab(6)">6</td>
-            <td onclick="hisab(5)">5</td>
-            <td onclick="hisab(6)">6</td>
-            <td class="cr" onclick="hisab('/')">÷</td>
-        </tr>
-        <tr>
-            <td onclick="hisab(3)">3</td>
-            <td onclick="hisab(2)">2</td>
-            <td onclick="hisab(1)">1</td>
-            <td class="cr" onclick="hisab('-')">-</td>
-        </tr>
-        <tr>
-            <td onclick="hisab(0)">0</td>
-            <td onclick="hisab('.')">.</td>
-            <td id="eco" onclick=" Aknatij ('=')">=</td>
-            <td class="cr" onclick="hisab('+')">+</td>
-        </tr>
-    </table>
 </body>
-
 </html>
