@@ -1,0 +1,102 @@
+body {
+    padding: 12px;
+    margin: 0px;
+    background-color: rgb(65, 60, 60);
+    font-size: 30px;
+
+}
+
+div {
+    min-height: 100px;
+    margin-bottom: 20px;
+
+}
+
+.nav {
+
+    background-color: rgba(95, 92, 92, 0.759);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    font-size: 30px;
+}
+
+.navbar {
+
+    margin-top: 7px;
+    min-height: 30px;
+    padding: 10px;
+
+}
+
+
+.flag {
+
+    position: absolute;
+    left: 15px;
+    width: 65px;
+
+}
+
+input {
+
+    color: rgb(139, 166, 172);
+    text-align: center;
+    font-size: 40px;
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 70px;
+    width: 100%;
+    background-color: rgb(41, 38, 38);
+    border: 2px solid rgba(172, 172, 172, 0.388);
+    border-radius: 15px;
+
+}
+
+.contener {
+    position: relative;
+    color: rgb(157, 160, 162);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+.geld {
+    font-size: 20px;
+    font-weight: 700;
+    padding-bottom: 2px;
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+
+}
+
+.contenert-center {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+button {
+
+    background-color: cornflowerblue;
+    padding: 0px 20px;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 28px;
+    border: unset;
+    box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.51);
+    cursor: pointer;
+
+}
+
+button:hover {
+    background-color: rgb(114, 115, 92);
+
+}
