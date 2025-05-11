@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Währungsrechner</title>
+    <style>
+        /* إعدادات الجسم الأساسية */
+        *{
+            padding: 0;
+            margin: 0;
+            
+        }
+        body {
+           
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+            background-color: #9191d5;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* تصميم الشريط العلوي */
+        .nav {
+            background-color: #252525d0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            font-size: 24px;
+            color: #fff;
+            padding: 15px 20px;
+            box-sizing: border-box;
+            border-bottom:  1px solid #0000000e;
+        }
+
+        .navbar {
+            margin-right: 10px;
+            width: 30px;
+        }
+
+        /* تصميم الحاوية الأساسية */
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgb(8 8 8 / 30%);
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+        }
+
+        /* تصميم المدخلات */
+        input {
+            color: #333;
+            font-size: 24px;
+            text-align: center;
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #f8f8f8;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #3a8dff;
+            background-color: #e6f0ff;
+        }
+
+        /* تصميم الأعلام */
+        .flag {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        /* تصميم النص العملة */
+        .currency {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* تصميم الأزرار */
+        button {
+            margin-top: 12px;
+            background-color: #4caf50;
+            padding: 15px 25px;
+            font-size: 20px;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* تنسيق السهم */
+        .arrow {
+            margin: 20px 0;
+        }
+
+        /* Media Queries لتحسين المظهر على الشاشات الصغيرة */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .nav {
+                font-size: 18px;
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            input {
+                font-size: 18px;
+                padding: 12px;
+            }
+
+            button {
+                font-size: 18px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- الشريط العلوي -->
+    <div class="nav">
+        <i>💰</i>
+         Währungsrechner
+    </div>
+
+    <!-- الحاوية الرئيسية -->
+    <div class="container">
+        <!-- مدخل اليورور -->
+        <div class="currency-container">
+            <i>💴</i>
+            <input type="text" id="eurof" value="100">
+            <span class="currency">Euro</span>
+        </div>
+
+        <!-- السهم بين المدخلات -->
+        <div class="arrow">
+            <i>🔺🔻</i>
+        </div>
+
+        <!-- مدخل الدولار الأمريكي -->
+        <div class="currency-container">
+            <i>💵</i>
+            <input type="text" id="USD" value="" disabled>
+            <span class="currency">USD</span>
+        </div>
+
+        <!-- زر الحساب -->
+        <button onclick="calc()">Berechnen</button>
+    </div>
+
+    <script>
+        // الوظيفة التي تقوم بحساب القيمة المحولة
+        function calc() {
+            let Euros = document.getElementById('eurof').value;
+            let result = Euros * 0.98;
+            document.getElementById('USD').value = result.toFixed(2);
+        }
+    </script>
+
+</body>
+
+</html>
