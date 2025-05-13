@@ -1,0 +1,190 @@
+body {
+    margin: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+   
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+.header{
+    margin: 0px;
+    padding-left: 10px;
+    background-color: #00aaff;
+    color: #ffffff;    
+}
+.container {
+    margin:10px;
+    display: flex;
+    justify-content: flex-start; /* توزيع العناصر على الجانبين */
+    align-items: flex-start;
+    gap: 60px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.right-section {
+    width: 48%; /* ضبط عرض القسم الأيمن */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.left-section {
+    width: 48%;
+    background-color: #ffffff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.left-section h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+.post-end{
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+form button {
+    margin-top: 6px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #7c4589;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+form button:hover {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.429);
+    background-color: #34824a;
+}
+#post {
+    display: flex;
+    flex-direction: column; /* ترتيب الـ posts بشكل عمودي */
+    gap: 15px; /* إضافة تباعد بين المنشورات */
+    width: 100%;
+}
+
+.post-item {
+    display: flex;
+    justify-content: space-between; /* وضع الأيقونات على الطرف الأيمن */
+    align-items: center; /* ضبط المحاذاة داخل كل منشور */
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.icons {
+    display: flex;
+    flex-direction: row; /* جعل الأيقونات في خط أفقي */
+    gap: 10px; /* تحديد المسافة بين الأيقونات */
+}
+.right{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+
+
+i:hover {
+    cursor: pointer;
+    color: #007bff;
+}
+
+#empty {
+    margin: 0;
+    border: none;
+    color: firebrick;
+    font-size: 14px;
+}
+
+
+
+
+
+
+.icons i {
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
+}
+
+.icons i:hover {
+    color: red;
+}
+
+h3 {
+    gap: 10px;
+    margin: 4px;
+    color: #444;
+}
+div{
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+p {
+    margin: 5px;
+    width: 80%;
+    max-width: 150px; /* الحد الأقصى لعرض الفقرة */
+    font-size: 16px;
+    color: #333;
+    word-wrap: break-word; /* السماح للكلمات بالانكسار عند الحاجة */
+    overflow-wrap: break-word; /* تأكيد دعم تقسيم النص */
+    white-space: normal; /* السماح بتنسيق النص بشكل طبيعي */
+}
+.selected {
+    color: red; /* تحويل النص إلى اللون الأحمر */
+    text-decoration: line-through; /* وضع خط في المنتصف */
+   
+}
+p:hover{
+    cursor: pointer;
+}
+.it-select-E p{
+    text-decoration: line-through;
+    color: #929292a6;
+}
+.it-select-E{
+    background-color: rgba(0, 255, 255, 0.13);
+}
+/* تأثير عند سحب العنصر */
+.post-item.dragging {
+    opacity: 0.5;
+  }
+  
+.post-item.drag-over {
+    border: 2px dashed #00aaff;
+    background-color: #f0faff;
+  }
+  #input {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+#input:focus {
+    border: 3px dashed #00aaff;
+    border-left-style: dashed;
+    border-color: #3876eb;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.429);
+    outline: none;
+}
